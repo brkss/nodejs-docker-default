@@ -1,22 +1,22 @@
-version: "3.8"
-
+version: "3.1"
 services:
-  app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+  security:
+    build: .
     ports:
       - 4000:4000
     volumes:
       - .:/app
-      - 'app/node_modules'
+      - "app/node_modules"
     depends_on:
-      - mysql_server
-  
-  mysql_server:
-    image: mysql:8.0
+      - db
     environment:
-      - MYSQL_DATABASE=docker_node_tut
-      - MYSQL_USER=ber
-      - MYSQL_PASSWORD=secret
-      - MYSQL_ROOT_PASSWORD=secret
+      - DATABASE_HOST=db
+      - DATABASE_USER=ye
+      - DATABASE_PASS=123
+      - DATABASE_NAME=test
+  db:
+    build: ./database
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    ports:
+      - 3318:3306

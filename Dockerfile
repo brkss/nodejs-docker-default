@@ -1,4 +1,4 @@
-FROM node:latest
+FROM node:14.5.0
 
 # make dir
 WORKDIR /app
