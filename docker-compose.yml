@@ -9,6 +9,7 @@ services:
       - "app/node_modules"
     depends_on:
       - db
+    # use this as env variables to configure your database ! CHECK database/Dockerfile 
     environment:
       - DATABASE_HOST=db
       - DATABASE_USER=ye
